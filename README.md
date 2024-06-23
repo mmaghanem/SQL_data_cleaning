@@ -1,5 +1,4 @@
-Nashville Housing Data Cleaning Project
-Detailed Explanation of Key SQL Techniques
+# Nashville Housing Data Cleaning Project Detailed Explanation of Key SQL Techniques
 By: Mahmoud Ghanem
 
 # Introduction
