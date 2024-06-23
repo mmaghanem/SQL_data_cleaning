@@ -1,7 +1,7 @@
 # Nashville Housing Data Cleaning Project Detailed Explanation of Key SQL Techniques
 By: Mahmoud Ghanem
 
-# Introduction
+## Introduction
 The Nashville Housing Data Cleaning Project aims to ensure the quality and usability of a dataset containing housing information for Nashville. This document provides a detailed explanation of the key SQL techniques and methods used to clean and preprocess the data, showcasing the benefits of each step in preparing the data for analysis.
 Objectives
 1. Data Cleaning: Identify and correct inaccuracies and inconsistencies in the dataset to ensure it is accurate and reliable.
