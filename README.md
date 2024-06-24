@@ -101,6 +101,7 @@ DELETE t1
 FROM `NashvilleHousing` t1
 JOIN row_num t2 ON t1.UniqueID = t2.UniqueID
 WHERE t2.row_num > 1;
+```
 ![image](https://github.com/mmaghanem/sql_cleaning/assets/109820939/4c30df74-3bfc-41e7-90df-535966232c1b)
 
 
