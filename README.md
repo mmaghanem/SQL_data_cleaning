@@ -13,14 +13,14 @@ The dataset contains housing information for Nashville and is provided in both C
 Methodology and Code Explanation
 
 1. Importing Data
-To begin, we imported all records from the NashvilleHousing table to understand the data structure and its contents. This initial step is crucial for gaining insights into the data and planning subsequent cleaning operations.
+Imported all records from the NashvilleHousing table to understand the data structure and its contents. Analyzing the data and planning next steps of data cleaning.
 ```sql
 SELECT *
 FROM `NashvilleHousing`;
 ```
 
 2. Formatting Dates
-Standardizing date formats is essential for consistency. The following SQL snippet reformats the SaleDate field into a standard date format.
+Standardizing data formats Ex: reformats the SaleDate field into a standard date format.
 ```sql
 UPDATE NashvilleHousing
 SET SaleDate = STR_TO_DATE(SaleDate, '%M %e, %Y');
@@ -29,7 +29,7 @@ SET SaleDate = STR_TO_DATE(SaleDate, '%M %e, %Y');
 
 
 3. Populating Missing Addresses
-Missing data, especially in critical fields like PropertyAddress, can lead to incomplete analysis. The SQL code below fills in missing addresses by leveraging existing data with the same ParcelID.
+Missing data can lead to incomplete analysis, Ex: PropertyAddress, The SQL code below fills in missing addresses by leveraging existing data with the same ParcelID.
 ```sql
 -- Identify and fill missing Property Address data
 SELECT a.UniqueID, a.ParcelID, a.PropertyAddress, b.UniqueID, b.ParcelID, b.PropertyAddress,
@@ -50,7 +50,7 @@ WHERE a.PropertyAddress = '';
 
 
 4. Breaking Down Address Components
-For more detailed analysis, it’s beneficial to break down composite fields like PropertyAddress into individual components. The SQL code below splits the address into separate parts such as street address and city.
+For detailed analysis, I break down PropertyAddress fields into separate parts such as street address and city.
 ```sql
 -- Extracting individual parts of the address (Address, City)
 SELECT SUBSTRING(PropertyAddress, 1, LOCATE(',', PropertyAddress) - 1) AS Address,
@@ -66,7 +66,7 @@ SET PropertSplitAddress = SUBSTRING(PropertyAddress, 1, LOCATE(',', PropertyAddr
 ![image](https://github.com/mmaghanem/sql_cleaning/assets/109820939/5b0cec5e-f2ac-4060-b120-fe4f384e6f6c)
 
 5. Remove Duplicate
-Removing duplicte data point (Carefully) to avoid inflate the numbers
+Removing duplicte data point (Carefully) to avoid inflating the numbers
 ```WITH row_num AS (
 SELECT *,
 		row_number() OVER (partition by 
