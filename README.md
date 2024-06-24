@@ -65,6 +65,44 @@ SET PropertSplitAddress = SUBSTRING(PropertyAddress, 1, LOCATE(',', PropertyAddr
 ```
 ![image](https://github.com/mmaghanem/sql_cleaning/assets/109820939/5b0cec5e-f2ac-4060-b120-fe4f384e6f6c)
 
+5. Remove Duplicate
+Removing duplicte data point (Carefully) to avoid inflate the numbers
+```WITH row_num AS (
+SELECT *,
+		row_number() OVER (partition by 
+        ParcelID,
+        PropertyAddress,
+        SalePrice,
+        SaleDate,
+        LegalReference
+        ORDER BY UniqueID) as row_num
+FROM `NashvilleHousing`
+ORDER BY ParcelID DESC
+)
+SELECT COUNT(*)
+FROM row_num
+WHERE row_num > 1
+ORDER BY ParcelID;
+
+DROP TABLE IF EXISTS row_num;
+CREATE TEMPORARY TABLE row_num AS
+SELECT *,
+    ROW_NUMBER() OVER (PARTITION BY 
+        ParcelID,
+        PropertyAddress,
+        SalePrice,
+        SaleDate,
+        LegalReference
+        ORDER BY UniqueID) AS row_num
+FROM `NashvilleHousing`
+ORDER BY ParcelID DESC;
+
+DELETE t1
+FROM `NashvilleHousing` t1
+JOIN row_num t2 ON t1.UniqueID = t2.UniqueID
+WHERE t2.row_num > 1;
+![image](https://github.com/mmaghanem/sql_cleaning/assets/109820939/4c30df74-3bfc-41e7-90df-535966232c1b)
+
 
 ## Key Findings and Benefits
 The cleaned dataset provides a reliable foundation for further analysis, uncovering patterns and trends in the Nashville housing market. The data cleaning process addressed issues such as missing values, inconsistent formats, and provided a structured format that supports accurate and insightful analysis.
