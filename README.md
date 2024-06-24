@@ -25,6 +25,8 @@ Standardizing date formats is essential for consistency. The following SQL snipp
 UPDATE NashvilleHousing
 SET SaleDate = STR_TO_DATE(SaleDate, '%M %e, %Y');
 ```
+![image](https://github.com/mmaghanem/sql_cleaning/assets/109820939/f4225ead-d453-46b2-930f-be1fb62067f7)
+
 
 3. Populating Missing Addresses
 Missing data, especially in critical fields like PropertyAddress, can lead to incomplete analysis. The SQL code below fills in missing addresses by leveraging existing data with the same ParcelID.
@@ -44,6 +46,8 @@ ON a.ParcelID = b.ParcelID AND a.UniqueID <> b.UniqueID
 SET a.PropertyAddress = IF(a.PropertyAddress = '', b.PropertyAddress, a.PropertyAddress)
 WHERE a.PropertyAddress = '';
 ```
+![image](https://github.com/mmaghanem/sql_cleaning/assets/109820939/4cbdd146-7f8d-4a95-91d2-34bde34e56c1)
+
 
 4. Breaking Down Address Components
 For more detailed analysis, it’s beneficial to break down composite fields like PropertyAddress into individual components. The SQL code below splits the address into separate parts such as street address and city.
@@ -59,6 +63,8 @@ ADD PropertSplitAddress NVARCHAR(255);
 UPDATE `NashvilleHousing`
 SET PropertSplitAddress = SUBSTRING(PropertyAddress, 1, LOCATE(',', PropertyAddress) - 1);
 ```
+![image](https://github.com/mmaghanem/sql_cleaning/assets/109820939/5b0cec5e-f2ac-4060-b120-fe4f384e6f6c)
+
 
 ## Key Findings and Benefits
 The cleaned dataset provides a reliable foundation for further analysis, uncovering patterns and trends in the Nashville housing market. The data cleaning process addressed issues such as missing values, inconsistent formats, and provided a structured format that supports accurate and insightful analysis.
