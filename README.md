@@ -25,7 +25,7 @@ Standardizing date formats is essential for consistency. The following SQL snipp
 UPDATE NashvilleHousing
 SET SaleDate = STR_TO_DATE(SaleDate, '%M %e, %Y');
 ```
-![image](https://github.com/mmaghanem/sql_cleaning/assets/109820939/f4225ead-d453-46b2-930f-be1fb62067f7)
+![image](https://github.com/mmaghanem/sql_cleaning/assets/109820939/05a4c89e-f25a-45ce-89d8-0f28ab68cbe5)
 
 
 3. Populating Missing Addresses
